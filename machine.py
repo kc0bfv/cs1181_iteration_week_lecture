@@ -1,4 +1,5 @@
 import payment
+import dispensing
 
 def pay():
     print("Ways to pay")
@@ -20,7 +21,16 @@ def pay():
         print("You typed something invalid!")
 
 def selection():
-    pass
+    print("Soda Types")
+    print("""
+  Pepsi
+  Mt Dew
+  Coke
+""")
+    what_user_wants = input("What soda do you want? ")
+    if payment.can_pay_for_soda():
+        dispensing.dispense(what_user_wants)
+        payment.pay_for_soda()
 
 i_dont_want_to_quit = True
 
@@ -29,6 +39,7 @@ while i_dont_want_to_quit:
     print("""
         Pay
         Select
+        Refund
         Quit
     """
     )
@@ -40,6 +51,8 @@ while i_dont_want_to_quit:
         selection()
     elif what_user_wants == "Quit":
         i_dont_want_to_quit = False
+    elif what_user_wants == "Refund":
+        payment.refund_coins_money()
     else:
         print("Invalid choice")
 
